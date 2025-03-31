@@ -71,6 +71,34 @@ describe('PokemonService', () => {
       req.flush(mockPokemon);
 
     });
+
+    it('should handle 404 error when pokemon not found', () => {
+      service.getPokemon('invalid').subscribe({
+        next: () => fail('should have failed with 404 error'),
+        error: (error) => {
+          expect(error.status).toBe(404);
+          expect(error).toBeTruthy();
+        }
+      });
+
+      const req = httpMock.expectOne(`${environment.BASE_URL}/pokemon/invalid`);
+      req.flush('Not found', { status: 404, statusText: 'Not Found' });
+    });
+
+    it('should fetch a random pokemon', () => {
+
+      spyOn(Math, 'random').and.returnValue(0.24);
+
+      service.getRandomPokemon().subscribe(pokemon => {
+        expect(pokemon).toBeTruthy();
+      });
+
+      const req = httpMock.expectOne(`${environment.BASE_URL}/pokemon/25`);
+      expect(req.request.method).toBe('GET');
+      req.flush({mockPokemon});
+    });
+
   })
+
 });
 
