@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", Helvetica, sans-serif;
+}
+
+.step-search-form {
+  background-color: #e6e6e6;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.form-wrapper {
+  background-color: #e6e6e6;
+  width: 100%;
+  max-width: 1440px;
+  height: 100vh;
+}
+
+.form {
+  height: 100%;
+  background-image: url(https://c.animaapp.com/m8f4tf87B6OKYS/img/image-1.png);
+  background-size: cover;
+  background-position: 50% 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlap {
+  width: 428px;
+  height: 362px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 2px solid #595854;
+  position: relative;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pokeball {
+  width: 94px;
+  height: 93px;
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+.search {
+  width: 100%;
+  max-width: 307px;
+  margin-bottom: 35px;
+}
+
+.text-wrapper {
+  display: block;
+  font-weight: 700;
+  color: #757575;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.rectangle {
+  width: 100%;
+  height: 62px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  border: 1px solid #cfc7c2;
+  padding: 0 15px;
+  font-size: 16px;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 307px;
+}
+
+.search-btn, .random-btn {
+  width: 117px;
+  height: 45px;
+  background-color: #fe5858;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-text {
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+/* Hover effects */
+.search-btn:hover, .random-btn:hover {
+  background-color: #ff3b3b;
+}
+
+.rectangle:focus {
+  outline: none;
+  border-color: #fe5858;
+}
