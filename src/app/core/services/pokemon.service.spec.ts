@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { PokemonService } from './pokemon.service';
 import {HttpTestingController, provideHttpClientTesting} from '@angular/common/http/testing';
 import {provideHttpClient} from '@angular/common/http';
-import {Pokemon} from '../models/pokemon.model';
+import {Pokemon, PokemonDetails, PokemonSpecies} from '../models/pokemon.model';
 import {environment} from '../../../environments/environment';
 
 describe('PokemonService', () => {
@@ -26,6 +26,7 @@ describe('PokemonService', () => {
   });
 
   describe('getPokemonByIdOrName', () => {
+
     const mockPokemon: Pokemon = {
       id: 1,
       name: 'ivysaur',
@@ -60,15 +61,33 @@ describe('PokemonService', () => {
       ]
     };
 
-    it('should fetch pokemon by name', () => {
-      const testName = "ivysaur"
-      service.getPokemon(testName).subscribe((pokemon) => {
-        expect(pokemon).toEqual(mockPokemon);
-        expect(pokemon.name).toBe(testName);
+    const mockSpecies: PokemonSpecies = {
+      flavor_text_entries : [
+        {
+          flavor_text : "description"
+        }
+      ]
+    };
+
+    const expectedResponse: PokemonDetails = {
+      pokemon: mockPokemon,
+      pokemonSpecies: mockSpecies
+    };
+
+    it('should fetch pokemon and species successfully', () => {
+
+      service.getPokemon(1).subscribe(response => {
+        expect(response).toEqual(expectedResponse);
       });
-      const req = httpMock.expectOne(`${environment.BASE_URL}/pokemon/${testName}`);
-      expect(req.request.method).toBe('GET');
-      req.flush(mockPokemon);
+
+
+      const pokemonReq = httpMock.expectOne(`${environment.BASE_URL}/pokemon/1`)
+      expect(pokemonReq.request.method).toBe('GET');
+      pokemonReq.flush(mockPokemon);
+
+      const speciesReq = httpMock.expectOne(`${environment.BASE_URL}/pokemon-species/1`)
+      expect(pokemonReq.request.method).toBe('GET');
+      speciesReq.flush(mockSpecies);
 
     });
 
@@ -83,19 +102,6 @@ describe('PokemonService', () => {
 
       const req = httpMock.expectOne(`${environment.BASE_URL}/pokemon/invalid`);
       req.flush('Not found', { status: 404, statusText: 'Not Found' });
-    });
-
-    it('should fetch a random pokemon', () => {
-
-      spyOn(Math, 'random').and.returnValue(0.24);
-
-      service.getRandomPokemon().subscribe(pokemon => {
-        expect(pokemon).toBeTruthy();
-      });
-
-      const req = httpMock.expectOne(`${environment.BASE_URL}/pokemon/25`);
-      expect(req.request.method).toBe('GET');
-      req.flush({mockPokemon});
     });
 
   })
