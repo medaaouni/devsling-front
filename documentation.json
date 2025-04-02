@@ -2,6 +2,91 @@
     "pipes": [],
     "interfaces": [
         {
+            "name": "Pokemon",
+            "id": "interface-Pokemon-c1b80854ea885bcc492dc48d7161d4b75e4f3ef89c9be21411cc078c7bae9b1004b15f057c07cb8bcda34bca1cebf1d8d2911f8bc1d46ca21d3672cfcfeb079c",
+            "file": "src/app/core/models/pokemon.model.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface Pokemon {\r\n  id: number;\r\n  name: string;\r\n  height: number;\r\n  weight: number;\r\n  sprites: {\r\n    front_default: string;\r\n    other: {\r\n      'official-artwork': {\r\n        front_default: string;\r\n      };\r\n    };\r\n  };\r\n  types: {\r\n    slot: number;\r\n    type: {\r\n      name: PokemonType;\r\n      url: string;\r\n    };\r\n  }[];\r\n  stats: {\r\n    base_stat: number;\r\n    effort: number;\r\n    stat: {\r\n      name: string;\r\n      url: string;\r\n    };\r\n  }[];\r\n}\r\n\r\nexport type PokemonType =\r\n  | 'normal' | 'fire' | 'water' | 'electric' | 'grass' | 'ice'\r\n  | 'fighting' | 'poison' | 'ground' | 'flying' | 'psychic'\r\n  | 'bug' | 'rock' | 'ghost' | 'dragon' | 'dark' | 'steel'\r\n  | 'fairy';\r\n",
+            "properties": [
+                {
+                    "name": "height",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "sprites",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "stats",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
+                },
+                {
+                    "name": "types",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "weight",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
             "name": "User",
             "id": "interface-User-d4821beac0e4a852e513391b7470981c4353fdd95a18628bb68136c8695b489ee15b926e2e5031bc26cf30e1508e0a362c3ee13a06734702b4d15af140e485d5",
             "file": "src/stories/user.ts",
@@ -30,37 +115,9 @@
     "injectables": [
         {
             "name": "PokemonService",
-            "id": "injectable-PokemonService-d6b32398e82b5b668213e6493752507051e7d00c8748d95af3711e15d02db845d89e935e79d87900bda009c82d04b1268f241297fbc25659cdec20162cb8b919",
+            "id": "injectable-PokemonService-14bb66ee542896492ed0f8e22ab9bb6f94a289b6986cbd07fb4d06255cc6b451bb64143fda38830a80e77f692b58695b63bfe63ab5b517db4f73f32194ae0bca",
             "file": "src/app/core/services/pokemon.service.ts",
             "properties": [
-                {
-                    "name": "apollo",
-                    "defaultValue": "inject(ApolloClient)",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "ApolloClient<any>",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 12,
-                    "modifierKind": [
-                        123
-                    ]
-                },
-                {
-                    "name": "baseUrl",
-                    "defaultValue": "'https://pokeapi.co/api/v2/pokemon'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 13,
-                    "modifierKind": [
-                        123
-                    ]
-                },
                 {
                     "name": "http",
                     "defaultValue": "inject(HttpClient)",
@@ -70,21 +127,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 11,
-                    "modifierKind": [
-                        123
-                    ]
-                },
-                {
-                    "name": "speciesUrl",
-                    "defaultValue": "'https://pokeapi.co/api/v2/pokemon-species'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 14,
+                    "line": 12,
                     "modifierKind": [
                         123
                     ]
@@ -96,21 +139,62 @@
                     "args": [
                         {
                             "name": "idOrName",
-                            "type": "string",
+                            "type": "string | number",
                             "deprecated": false,
                             "deprecationMessage": ""
                         }
                     ],
                     "optional": false,
-                    "returnType": "Observable<any>",
+                    "returnType": "Observable<Pokemon>",
                     "typeParameters": [],
-                    "line": 16,
+                    "line": 14,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
                             "name": "idOrName",
-                            "type": "string",
+                            "type": "string | number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getRandomPokemon",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<Pokemon>",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleError",
+                    "args": [
+                        {
+                            "name": "err",
+                            "type": "HttpErrorResponse",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<never>",
+                    "typeParameters": [],
+                    "line": 27,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "err",
+                            "type": "HttpErrorResponse",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
@@ -124,7 +208,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import {inject, Injectable} from '@angular/core';\r\nimport {HttpClient} from '@angular/common/http';\r\nimport {ApolloClient} from '@apollo/client';\r\nimport {Observable} from 'rxjs';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class PokemonService {\r\n\r\n  private http: HttpClient = inject(HttpClient)\r\n  private apollo: ApolloClient<any> = inject(ApolloClient)\r\n  private baseUrl = 'https://pokeapi.co/api/v2/pokemon';\r\n  private speciesUrl = 'https://pokeapi.co/api/v2/pokemon-species';\r\n\r\n  getPokemon(idOrName: string): Observable<any> {\r\n    return this.http.get(`${this.baseUrl}/${idOrName}`);\r\n  }\r\n}\r\n",
+            "sourceCode": "import {inject, Injectable} from '@angular/core';\r\nimport {HttpClient, HttpErrorResponse} from '@angular/common/http';\r\nimport {catchError, Observable, throwError} from 'rxjs';\r\nimport {Pokemon} from '../models/pokemon.model';\r\nimport {environment} from '../../../environments/environment';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class PokemonService {\r\n\r\n  private http: HttpClient = inject(HttpClient)\r\n\r\n  getPokemon(idOrName: string | number): Observable<Pokemon> {\r\n    return this.http.get<Pokemon>(`${environment.BASE_URL}/pokemon/${idOrName}`).pipe(\r\n      catchError(this.handleError)\r\n    );\r\n  }\r\n\r\n  getRandomPokemon(): Observable<Pokemon> {\r\n    const randomId = Math.floor(Math.random() * 100) + 1;\r\n    return this.getPokemon(randomId).pipe(\r\n      catchError(this.handleError)\r\n    );\r\n  }\r\n\r\n  private handleError(err:HttpErrorResponse):Observable<never> {\r\n    return throwError(() => err);\r\n  }\r\n}\r\n",
             "extends": [],
             "type": "injectable"
         }
@@ -504,7 +588,7 @@
         },
         {
             "name": "SearchPageComponent",
-            "id": "component-SearchPageComponent-1ff02866923d873f269d6787f11327105e39b22d1fd87a1fdc1b0ab73c844cd2d7c4b02a2dfad4a66579088fc3fa5ac7d2fc4f45a7891935fb6f2ce12a1fc4c9",
+            "id": "component-SearchPageComponent-8222d8b965121df7702875710ca20bf7dde5e1c6cf706b0ddb14d80bc15a66990476d06a147a3d97f80783c3577d68e7070dce1bc28d76ed92bca36755c42c03",
             "file": "src/app/features/search-page/search-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -521,8 +605,56 @@
             "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "pokemonService",
+                    "defaultValue": "inject(PokemonService)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "PokemonService",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "router",
+                    "defaultValue": "inject(Router)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Router",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "searchControl",
+                    "defaultValue": "new FormControl()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormControl",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "search",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -532,13 +664,13 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-search-page',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './search-page.component.html',\r\n  styleUrl: './search-page.component.css'\r\n})\r\nexport class SearchPageComponent {\r\n\r\n}\r\n",
+            "sourceCode": "import {Component, inject} from '@angular/core';\r\nimport {FormControl} from '@angular/forms';\r\nimport {PokemonService} from '../../core/services/pokemon.service';\r\nimport {Router} from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-search-page',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './search-page.component.html',\r\n  styleUrl: './search-page.component.css'\r\n})\r\nexport class SearchPageComponent {\r\n\r\n  searchControl: FormControl = new FormControl();\r\n\r\n  pokemonService: PokemonService = inject(PokemonService);\r\n\r\n  private router : Router = inject(Router);\r\n\r\n  search(){\r\n    const query: string = this.searchControl.value;\r\n    if (query.length > 0){\r\n      // TODO implement the pokemon page\r\n      this.router.navigate(['pokemon', query]);\r\n    }\r\n  }\r\n\r\n}\r\n",
             "styleUrl": "./search-page.component.css",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"step-search-form\">\r\n  <div class=\"form-wrapper\">\r\n    <div class=\"form\">\r\n      <div class=\"overlap\">\r\n        <div class=\"search\">\r\n          <input class=\"rectangle\"/>\r\n          <div class=\"text-wrapper\">Pokemon Name or Id</div>\r\n        </div>\r\n        <img class=\"pokeball\" src=\"https://c.animaapp.com/m8f4tf87B6OKYS/img/pokeball.png\" />\r\n        <button class=\"search-btn\">\r\n          <div class=\"overlap-group\"><div class=\"div\">Search</div></div>\r\n        </button>\r\n        <div class=\"random-btn\">\r\n          <button class=\"overlap-group\"><div class=\"text-wrapper-2\">Random</div></button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div class=\"step-search-form\">\r\n  <div class=\"form-wrapper\">\r\n    <div class=\"form\">\r\n      <div class=\"overlap\">\r\n        <img class=\"pokeball\" src=\"https://c.animaapp.com/m8f4tf87B6OKYS/img/pokeball.png\" alt=\"Pokeball\" />\r\n\r\n        <div class=\"search\">\r\n          <label for=\"pokemon-search\" class=\"text-wrapper\">Pokemon Name or Id</label>\r\n          <input type=\"text\" id=\"pokemon-search\" class=\"rectangle\" placeholder=\"\">\r\n        </div>\r\n\r\n        <div class=\"buttons-container\">\r\n          <button class=\"search-btn\">\r\n            <div class=\"btn-text\" (click)=\"search()\">Search</div>\r\n          </button>\r\n\r\n          <button class=\"random-btn\">\r\n            <div class=\"btn-text\">Random</div>\r\n          </button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
         }
     ],
     "modules": [],
@@ -552,11 +684,43 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "ApplicationConfig",
-                "defaultValue": "{\r\n  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]\r\n}"
+                "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({eventCoalescing: true}),\r\n    provideRouter(routes),\r\n    provideHttpClient(),\r\n  ]\r\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.development.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  BASE_URL: 'https://pokeapi.co/api/v2',\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  BASE_URL: 'https://pokeapi.co/api/v2',\n}"
             }
         ],
         "functions": [],
-        "typealiases": [],
+        "typealiases": [
+            {
+                "name": "PokemonType",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"normal\" | \"fire\" | \"water\" | \"electric\" | \"grass\" | \"ice\" | \"fighting\" | \"poison\" | \"ground\" | \"flying\" | \"psychic\" | \"bug\" | \"rock\" | \"ghost\" | \"dragon\" | \"dark\" | \"steel\" | \"fairy\"",
+                "file": "src/app/core/models/pokemon.model.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 192
+            }
+        ],
         "enumerations": [],
         "groupedVariables": {
             "src/app/app.config.ts": [
@@ -568,17 +732,55 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "ApplicationConfig",
-                    "defaultValue": "{\r\n  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]\r\n}"
+                    "defaultValue": "{\r\n  providers: [\r\n    provideZoneChangeDetection({eventCoalescing: true}),\r\n    provideRouter(routes),\r\n    provideHttpClient(),\r\n  ]\r\n}"
+                }
+            ],
+            "src/environments/environment.development.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.development.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  BASE_URL: 'https://pokeapi.co/api/v2',\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  BASE_URL: 'https://pokeapi.co/api/v2',\n}"
                 }
             ]
         },
         "groupedFunctions": {},
         "groupedEnumerations": {},
-        "groupedTypeAliases": {}
+        "groupedTypeAliases": {
+            "src/app/core/models/pokemon.model.ts": [
+                {
+                    "name": "PokemonType",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"normal\" | \"fire\" | \"water\" | \"electric\" | \"grass\" | \"ice\" | \"fighting\" | \"poison\" | \"ground\" | \"flying\" | \"psychic\" | \"bug\" | \"rock\" | \"ghost\" | \"dragon\" | \"dark\" | \"steel\" | \"fairy\"",
+                    "file": "src/app/core/models/pokemon.model.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 192
+                }
+            ]
+        }
     },
     "routes": [],
     "coverage": {
-        "count": 10,
+        "count": 6,
         "status": "low",
         "files": [
             {
@@ -601,12 +803,31 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/core/models/pokemon.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Pokemon",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/models/pokemon.model.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "PokemonType",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/core/services/pokemon.service.ts",
                 "type": "injectable",
                 "linktype": "injectable",
                 "name": "PokemonService",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -614,6 +835,26 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "SearchPageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.development.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

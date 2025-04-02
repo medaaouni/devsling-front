@@ -1,0 +1,16 @@
+<div class="evolution-chain">
+  @for (evolution of getEvolutions();track evolution.id;let last = $last){
+    <div class="evolution-card">
+      <div class="evolution-item">
+        <img [ngSrc]="evolution.image" [alt]="evolution.name" class="evolution-image" [width]="120" [height]="120">
+        <span class="evolution-name">{{ evolution.name | titlecase }}</span>
+      </div>
+      @if (!last) {
+        <svg width="98" height="4" viewBox="0 0 98 4" fill="none" xmlns="http://www.w3.org/2000/svg"
+             [appTypeColor]="type">
+          <path d="M2 2H95.0388" stroke="#559EDF" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      }
+    </div>
+  }
+</div>

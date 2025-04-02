@@ -1,12 +1,13 @@
 import {Component, inject} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {PokemonService} from '../../core/services/pokemon.service';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search-page',
   standalone: true,
-  imports: [],
+  imports: [
+    ReactiveFormsModule
+  ],
   templateUrl: './search-page.component.html',
   styleUrl: './search-page.component.css'
 })
@@ -14,14 +15,20 @@ export class SearchPageComponent {
 
   searchControl: FormControl = new FormControl();
 
-  pokemonService: PokemonService = inject(PokemonService);
+  private router: Router = inject(Router);
 
-  private router : Router = inject(Router);
+  searchByQuery() {
+    const query: string | number = this.searchControl.value;
+    this.search(query)
+  }
 
-  search(){
-    const query: string = this.searchControl.value;
-    if (query.length > 0){
-      // TODO implement the pokemon page
+  randomSearch() {
+    const randomId = Math.floor(Math.random() * 898) + 1;
+    this.search(randomId)
+  }
+
+  search(query: string | number) {
+    if (query) {
       this.router.navigate(['pokemon', query]);
     }
   }

@@ -1,0 +1,45 @@
+.step {
+  background-color: #fe5858;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.step .div {
+  background-color: #fe5858;
+  width: 1440px;
+  height: 1024px;
+  position: relative;
+}
+
+.step .image {
+  position: absolute;
+  width: 360px;
+  height: 470px;
+  top: 277px;
+  left: 540px;
+  object-fit: cover;
+}
+
+.step .text-wrapper {
+  position: absolute;
+  height: 94px;
+  top: 125px;
+  left: 453px;
+  font-family: "Single Day", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 75px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.step .path {
+  position: absolute;
+  width: 39px;
+  height: 67px;
+  top: 126px;
+  left: 69px;
+  cursor: pointer;
+}

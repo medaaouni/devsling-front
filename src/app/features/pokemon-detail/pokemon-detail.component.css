@@ -1,0 +1,159 @@
+.pokemon-detail-container {
+  min-height: 100vh;
+  align-items: center;
+}
+
+.pokemon-detail-card {
+  background-color: #5dbe62;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px;
+  position: relative;
+}
+
+.back-button {
+  position: absolute;
+  width: 39.00000065564973px;
+  height: 67.00000327825273px;
+  top: 77px;
+  left: 122px;
+
+}
+
+.pokemon-card {
+  background-color: white;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 1196px;
+  margin-top: 120px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.pokemon-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.pokemon-image {
+  width: 170px;
+  height: 170px;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  top: -110px;
+
+}
+
+.pokemon-name {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 15px 0;
+  text-transform: capitalize;
+}
+
+.type-badges {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.type-badge {
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+}
+
+.pokemon-description {
+  max-width: 600px;
+  text-align: center;
+  margin-top: 20px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.tab-container {
+  margin-top: 30px;
+}
+
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.tab-buttons button {
+  padding: 10px 30px;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #999;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab-buttons button.active {
+  color: #5dbe62;
+  border-bottom: 2px solid #5dbe62;
+}
+
+.stats-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+
+.evolutions-container {
+  padding: 20px;
+}
+
+.moves-container {
+  text-align: center;
+  padding: 40px;
+}
+
+.coming-soon {
+  color: #999;
+  font-style: italic;
+}
+
+.loading, .error-message {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 18px;
+  color: white;
+}
+
+.error-message {
+  color: #ff6b6b;
+}
+
+@media (max-width: 768px) {
+  .pokemon-card {
+    padding: 20px;
+  }
+
+  .back-button {
+    top: 20px;
+    left: 20px;
+  }
+
+  .evolution-chain {
+    flex-direction: column;
+  }
+
+  .evolution-arrow {
+    transform: rotate(90deg);
+    margin: 20px 0;
+  }
+}

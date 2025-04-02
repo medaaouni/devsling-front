@@ -1,0 +1,7 @@
+<div *ngFor="let statInfo of pokemon.stats" class="stat-row">
+  <span class="stat-name">{{ formatStatName(statInfo.stat.name) }}</span>
+  <span class="stat-value">{{ statInfo.base_stat }}</span>
+  <div class="stat-bar-container">
+    <div class="stat-bar" [style.width.%]="statInfo.base_stat / 2"></div>
+  </div>
+</div>

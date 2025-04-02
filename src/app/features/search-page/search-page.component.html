@@ -6,16 +6,16 @@
 
         <div class="search">
           <label for="pokemon-search" class="text-wrapper">Pokemon Name or Id</label>
-          <input type="text" id="pokemon-search" class="rectangle" placeholder="">
+          <input type="text" [formControl]="searchControl" id="pokemon-search" class="rectangle" placeholder="">
         </div>
 
         <div class="buttons-container">
           <button class="search-btn">
-            <div class="btn-text" (click)="search()">Search</div>
+            <div class="btn-text" (click)="searchByQuery()">Search</div>
           </button>
 
           <button class="random-btn">
-            <div class="btn-text">Random</div>
+            <div class="btn-text" (click)="randomSearch()">Random</div>
           </button>
         </div>
       </div>
