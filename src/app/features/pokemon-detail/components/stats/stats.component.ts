@@ -14,7 +14,7 @@ import {NgForOf} from '@angular/common';
 export class StatsComponent {
 
   @Input()
-  pokemon! : Pokemon |any
+  pokemon! : Pokemon
 
   formatStatName(statName: string): string {
     const statNameMap: { [key: string]: string } = {

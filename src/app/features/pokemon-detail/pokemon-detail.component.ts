@@ -10,7 +10,7 @@ import {
 import {StatsComponent} from './components/stats/stats.component';
 import {PokemonService} from '../../core/services/pokemon.service';
 import {catchError, EMPTY, Observable, tap} from 'rxjs';
-import {Pokemon, PokemonEvolutionChain} from '../../core/models/pokemon.model';
+import {Pokemon, PokemonDetails, PokemonEvolutionChain} from '../../core/models/pokemon.model';
 import {PokemonGraphqlService} from '../../core/services/pokemon-graphql.service';
 import {EvolutionComponent} from './components/evolution/evolution.component';
 import {TypeColorDirective} from '../../core/directives/type-color.directive';
@@ -57,7 +57,7 @@ export class PokemonDetailComponent {
     errorMessage = '';
 
 
-    pokemon$!: Observable<Pokemon>;
+    pokemonDetails$!: Observable<PokemonDetails>;
     pokemonEvolutionChain$!: Observable<PokemonEvolutionChain>;
 
     setActiveTab(tab: 'stats' | 'evolutions' | 'moves'): void {
@@ -65,9 +65,9 @@ export class PokemonDetailComponent {
     }
 
     private fetchPokemonData(): void {
-        this.pokemon$ = this.pokemonService.getPokemon(this._id!).pipe(
-            tap(pokemon => {
-                this.pokemonEvolutionChain$ = this.pokemonGraphqlService.getPokemonEvolutions(pokemon.id).pipe(
+        this.pokemonDetails$ = this.pokemonService.getPokemon(this._id!).pipe(
+            tap(pokemonDetail => {
+                this.pokemonEvolutionChain$ = this.pokemonGraphqlService.getPokemonEvolutions(pokemonDetail.pokemon.id).pipe(
                     catchError(err => {
                         this.errorMessage = err.message
                         return EMPTY

@@ -28,50 +28,23 @@ export interface Pokemon {
   }[];
 }
 
-
 export interface PokemonSpecies {
-  id: number;
-  name: string;
   flavor_text_entries: {
     flavor_text: string;
-    language: {
-      name: string;
-    };
-  }[];
-  evolution_chain: {
-    url: string;
-  };
+  }[]
 }
 
-export interface PokemonEvolution {
-  chain: {
-    species: {
-      name: string;
-      url: string;
-    };
-    evolves_to: {
-      species: {
-        name: string;
-        url: string;
-      };
-      evolves_to: {
-        species: {
-          name: string;
-          url: string;
-        };
-      }[];
-    }[];
-  };
-}
 
+export interface PokemonDetails {
+  pokemon: Pokemon;
+  pokemonSpecies: PokemonSpecies
+}
 
 export type PokemonType =
   | 'normal' | 'fire' | 'water' | 'electric' | 'grass' | 'ice'
   | 'fighting' | 'poison' | 'ground' | 'flying' | 'psychic'
   | 'bug' | 'rock' | 'ghost' | 'dragon' | 'dark' | 'steel'
   | 'fairy';
-
-
 
 
 export interface PokemonEvolutionChain {
