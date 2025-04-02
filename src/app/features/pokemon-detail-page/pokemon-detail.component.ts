@@ -1,15 +1,15 @@
 import {Component, inject, Input} from '@angular/core';
 import {
-    AsyncPipe,
-    NgIf,
-    NgOptimizedImage,
-    NgTemplateOutlet,
-    TitleCasePipe,
-    UpperCasePipe
+  AsyncPipe,
+  NgIf,
+  NgOptimizedImage,
+  NgTemplateOutlet,
+  TitleCasePipe,
+  UpperCasePipe
 } from '@angular/common';
 import {StatsComponent} from './components/stats/stats.component';
 import {PokemonService} from '../../core/services/pokemon.service';
-import {catchError, EMPTY, Observable, tap} from 'rxjs';
+import {catchError, EMPTY, finalize, Observable, tap} from 'rxjs';
 import {Pokemon, PokemonDetails, PokemonEvolutionChain} from '../../core/models/pokemon.model';
 import {PokemonGraphqlService} from '../../core/services/pokemon-graphql.service';
 import {EvolutionComponent} from './components/evolution/evolution.component';
@@ -18,67 +18,71 @@ import {RouterLink} from '@angular/router';
 import {PokemonNotFoundComponent} from "./components/pokemon-not-found/pokemon-not-found.component";
 
 @Component({
-    selector: 'app-pokemon-detail',
-    imports: [
-        TitleCasePipe,
-        UpperCasePipe,
-        NgIf,
-        StatsComponent,
-        AsyncPipe,
-        EvolutionComponent,
-        TypeColorDirective,
-        NgTemplateOutlet,
-        NgOptimizedImage,
-        RouterLink,
-        PokemonNotFoundComponent,
-    ],
-    templateUrl: './pokemon-detail.component.html',
-    styleUrl: './pokemon-detail.component.css'
+  selector: 'app-pokemon-detail',
+  imports: [
+    TitleCasePipe,
+    UpperCasePipe,
+    NgIf,
+    StatsComponent,
+    AsyncPipe,
+    EvolutionComponent,
+    TypeColorDirective,
+    NgTemplateOutlet,
+    NgOptimizedImage,
+    RouterLink,
+    PokemonNotFoundComponent,
+  ],
+  templateUrl: './pokemon-detail.component.html',
+  styleUrl: './pokemon-detail.component.css'
 })
 export class PokemonDetailComponent {
 
-    @Input()
-    set id(id: number) {
-        if (id) {
-            this._id = id
-            this.fetchPokemonData();
-        }
-
+  @Input()
+  set id(id: number) {
+    if (id) {
+      this._id = id
+      this.fetchPokemonData();
     }
 
-    private _id!: number | string
+  }
 
-    private pokemonService: PokemonService = inject(PokemonService);
+  private _id!: number | string
 
-    private pokemonGraphqlService: PokemonGraphqlService = inject(PokemonGraphqlService);
+  private pokemonService: PokemonService = inject(PokemonService);
 
-    activeTab: 'stats' | 'evolutions' | 'moves' = 'stats';
-    loading = false;
-    errorMessage = '';
+  private pokemonGraphqlService: PokemonGraphqlService = inject(PokemonGraphqlService);
+
+  activeTab: 'stats' | 'evolutions' | 'moves' = 'stats';
+  loading = false;
+  errorMessage = '';
 
 
-    pokemonDetails$!: Observable<PokemonDetails>;
-    pokemonEvolutionChain$!: Observable<PokemonEvolutionChain | null>;
+  pokemonDetails$!: Observable<PokemonDetails>;
+  pokemonEvolutionChain$!: Observable<PokemonEvolutionChain | null>;
 
-    setActiveTab(tab: 'stats' | 'evolutions' | 'moves'): void {
-        this.activeTab = tab;
-    }
+  setActiveTab(tab: 'stats' | 'evolutions' | 'moves'): void {
+    this.activeTab = tab;
+  }
 
-    private fetchPokemonData(): void {
-        this.pokemonDetails$ = this.pokemonService.getPokemon(this._id!).pipe(
-            tap(pokemonDetail => {
-                this.pokemonEvolutionChain$ = this.pokemonGraphqlService.getPokemonEvolutions(pokemonDetail.pokemon.id).pipe(
-                    catchError(err => {
-                        this.errorMessage = err.message
-                        return EMPTY
-                    }),
-                );
-            }),
-            catchError(err => {
-                this.errorMessage = err.message
-                return EMPTY
-            }),
+  private fetchPokemonData(): void {
+    this.pokemonDetails$ = this.pokemonService.getPokemon(this._id!).pipe(
+      tap(pokemonDetail => {
+        this.pokemonEvolutionChain$ = this.pokemonGraphqlService.getPokemonEvolutions(pokemonDetail.pokemon.id).pipe(
+          catchError(err => {
+            this.errorMessage = err.message
+            return EMPTY
+          }),
         );
-    }
+      }),
+      catchError(err => {
+        this.errorMessage = err.message
+        return EMPTY
+      }),
+      finalize(() => {
+        this.loading = false;
+      })
+    );
+  }
+
 
 }

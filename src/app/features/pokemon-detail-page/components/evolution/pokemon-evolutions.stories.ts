@@ -52,7 +52,7 @@ const bulbasaurEvolutionChain = {
 export const GrassTypeEvolution: Story = {
   args: {
     evolutionChain: bulbasaurEvolutionChain,
-    primaryColor: '#78C850' // Grass type green
+    primaryColor: '#78C850'
   }
 };
 
@@ -80,6 +80,6 @@ export const FireTypeEvolution: Story = {
         }
       ]
     },
-    primaryColor: '#F08030' // Fire type orange
+    primaryColor: '#F08030'
   }
 };
