@@ -58,7 +58,7 @@ export class PokemonDetailComponent {
 
 
     pokemonDetails$!: Observable<PokemonDetails>;
-    pokemonEvolutionChain$!: Observable<PokemonEvolutionChain>;
+    pokemonEvolutionChain$!: Observable<PokemonEvolutionChain | null>;
 
     setActiveTab(tab: 'stats' | 'evolutions' | 'moves'): void {
         this.activeTab = tab;

@@ -13,13 +13,14 @@ export class PokemonGraphqlService {
   private apollo = inject(Apollo);
 
 
-  getPokemonEvolutions(pokemonId: number): Observable<PokemonEvolutionChain> {
+  getPokemonEvolutions(pokemonId: number): Observable<PokemonEvolutionChain |null> {
     return this.apollo.watchQuery<{ pokemon_v2_evolutionchain: PokemonEvolutionChain[] }>({
       query: GET_POKEMON_EVOLUTIONS,
       variables: {pokemonId}
     }).valueChanges.pipe(
       map(
-        (result) => result.data.pokemon_v2_evolutionchain[0]),
+        (result) =>
+          result.data?.pokemon_v2_evolutionchain?.length ? result.data.pokemon_v2_evolutionchain[0] : null),
       catchError(this.handleError)
     );
 
