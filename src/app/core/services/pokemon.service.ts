@@ -18,7 +18,7 @@ export class PokemonService {
   }
 
   getRandomPokemon(): Observable<Pokemon> {
-    const randomId = Math.floor(Math.random() * 100) + 1;
+    const randomId = Math.floor(Math.random() * 898) + 1;
     return this.getPokemon(randomId).pipe(
       catchError(this.handleError)
     );
